@@ -1,17 +1,13 @@
-function MakeBoard() {
-	const container = document.getElementById("container");
+const container = document.getElementById("container");
+const cell = document.createElement("div");
 
-	for (let i = 0; i < 16; i++) {
-		const cell = document.createElement("div");
-		cell.setAttribute("class", "gridSquare");
-		for (let j = 0; j < 16; j++) {
-			const rows = document.createElement("div");
-			rows.setAttribute("class", "gridRow");
-			rows.appendChild(cell);
-			container.appendChild(rows);
-			// container.appendChild(cell);
-		}
+cell.className = "gridSquare";
+
+for (let i = 0; i < 16; i++) {
+	for (let j = 0; j < 16; j++) {
+		var row = document.createElement("div");
+		row.className = "gridRow";
+		row.appendChild(cell);
 	}
 }
-
-MakeBoard();
+container.appendChild(row);
