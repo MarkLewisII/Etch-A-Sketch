@@ -1,13 +1,22 @@
 const container = document.getElementById("container");
-const cell = document.createElement("div");
-
-cell.className = "gridSquare";
+const cells = [];
+const rows = [];
 
 for (let i = 0; i < 16; i++) {
+	rows[i] = document.createElement("div");
+	rows[i].setAttribute("class", "gridColumn");
+	container.appendChild(rows[i]);
 	for (let j = 0; j < 16; j++) {
-		var row = document.createElement("div");
-		row.className = "gridRow";
-		row.appendChild(cell);
+		cells[j] = document.createElement("div");
+		cells[j].setAttribute("class", "gridCell");
+		rows[i].appendChild(cells[j]);
 	}
 }
-container.appendChild(row);
+
+const squares = document.querySelectorAll(".gridCell");
+
+squares.forEach((square) => {
+	square.addEventListener("mouseover", () => {
+		square.style.backgroundColor = "black";
+	});
+});
