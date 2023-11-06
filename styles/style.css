@@ -1,5 +1,10 @@
 body{
     display: flex;
+    flex-direction: column;
+}
+
+div#sizeBtn {
+    display: flex;
 }
 
 #container {
