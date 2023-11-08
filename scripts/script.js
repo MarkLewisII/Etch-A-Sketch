@@ -1,42 +1,60 @@
-// var width = 16;
-// var height = 16;
+var defualtSize = 16;
 
-Sketching(16, 16);
+// Sketching(16, 16);
+Sketching();
 
-function Sketching(width, height) {
+function Sketching(size = 16) {
 	const container = document.getElementById("container");
+	const containerHeight = container.offsetHeight;
+	const containerWidth = container.offsetWidth;
 	const cells = [];
-	const rows = [];
+	const columns = [];
 	const sizeText = document.getElementById("gridSize");
-
-	sizeText.textContent = `${width} x ${height}`;
-
-	for (let i = 0; i < width; i++) {
-		rows[i] = document.createElement("div");
-		rows[i].setAttribute("class", "gridColumn");
-		container.appendChild(rows[i]);
-		for (let j = 0; j < height; j++) {
-			cells[j] = document.createElement("div");
-			cells[j].setAttribute("class", "gridCell");
-			rows[i].appendChild(cells[j]);
-		}
-	}
-
-	const squares = document.querySelectorAll(".gridCell");
-
-	squares.forEach((square) => {
-		square.addEventListener("mouseover", () => {
-			square.style.backgroundColor = "black";
-		});
-	});
-}
-
-function SetSize() {
-	let newHeight = prompt("Please enter the height of your canvas.");
-	let newWidth = prompt("PLease enter the width of your canvas.");
+	// const sizeBtn = document.getElementById("sizeBtn");
+	var cellHeight = (size / containerHeight) * 100;
+	var cellWidth = (size / containerWidth) * 100;
 
 	
+	cellHeight = cellHeight + "%";
+	cellWidth = cellWidth + "%";
 
-	Sketching(newWidth, newHeight);
+	var columnWidth = (size / containerWidth) * 100;
+	columnWidth = columnWidth + "%";
+
+	console.log(containerWidth + "x" + containerHeight);
+	console.log(columnWidth);
+
+	if (size <= 100) {
+		for (let i = 0; i < size; i++) {
+			columns[i] = document.createElement("div");
+			columns[i].setAttribute("class", "gridColumn");
+			container.appendChild(columns[i]);
+			for (let j = 0; j < size; j++) {
+				cells[j] = document.createElement("div");
+				cells[j].setAttribute("class", "gridCell");
+				
+				columns[i].appendChild(cells[j]);
+			}
+		}
+
+		const squares = document.querySelectorAll(".gridCell");
+
+		squares.forEach((square) => {
+			square.style.height = cellHeight;
+			square.style.width = cellWidth;
+			square.addEventListener("mouseover", () => {
+				square.style.backgroundColor = "black";
+			});
+		});
+
+		sizeText.textContent = `${size} x ${size}`;
+	} else {
+		alert("Please ensure that grid size is no more than 100.");
+	}
 }
 
+function ClearBoard(container) {
+	while (container.firstChild) {
+		container.removeChild(container.firstChild);
+	}
+}
