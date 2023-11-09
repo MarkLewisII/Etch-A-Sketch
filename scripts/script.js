@@ -33,6 +33,7 @@ function Sketching(size = 16) {
 			square.style.width = cellSide;
 			square.addEventListener("mouseover", () => {
 				square.style.backgroundColor = "black";
+				// square.style.backgroundColor = `rgb(${Math.random() * 255},${Math.random() * 255}, ${Math.random() * 255})`;
 				square.style.opacity -= "-0.1";
 			});
 		});
