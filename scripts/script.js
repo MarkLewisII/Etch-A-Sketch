@@ -7,8 +7,9 @@ function Sketching(size = 16) {
 	const columns = [];
 	const sizeText = document.getElementById("gridSize");
 	var cellSide = containerSide / size;
-	cellSide = cellSide + "px";
 	var columnWidth = containerSide / size;
+	
+	cellSide = cellSide + "px";
 	columnWidth = columnWidth + "px";
 
 	if (size <= 100) {
@@ -31,7 +32,8 @@ function Sketching(size = 16) {
 			square.style.height = cellSide;
 			square.style.width = cellSide;
 			square.addEventListener("mouseover", () => {
-				square.style.backgroundColor = "black";
+				square.style.backgroundColor  = `rgb(${Math.random() * 255}, ${Math.random() * 255}, ${Math.random() * 255})`;
+;
 			});
 		});
 
